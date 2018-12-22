@@ -1,0 +1,46 @@
+#importing some important modules
+import FreeCAD
+import DraftTools
+import Draft
+import ArchWall
+import Arch
+import ArchStructure
+
+#creating parameters
+lengthOfWall = 5000
+widthOfWall = 3000
+heightOfWall = 3000
+thicknessOfSlab = 200
+offset1 = 1000
+offset2 = 1500
+
+#creating walls
+pl = FreeCAD.Placement()
+pl.Rotation.Q = (0.0,0.0,0.0,1.0)
+pl.Base = FreeCAD.Vector(0.0,0.0,0.0)
+rec = Draft.makeRectangle(lengthOfWall,widthOfWall,pl,False,None)
+Draft.autogroup(rec)
+obj = Arch.makeWall(FreeCAD.ActiveDocument.Rectangle)
+App.ActiveDocument.Wall.Align = 'Right'
+Draft.autogroup(obj)
+
+#creating floor slab
+rec = Draft.makeRectangle(lengthOfWall + offset1,widthOfWall + offset1,placement=pl,face=False,support=None)
+Draft.autogroup(rec)
+Draft.move([FreeCAD.ActiveDocument.Rectangle001],FreeCAD.Vector(-offset1/2,-offset1/2.0,0.0),copy=False)
+obj = Arch.makeStructure(FreeCAD.ActiveDocument.Rectangle001)
+Draft.autogroup(obj)
+App.ActiveDocument.Structure.Height = thicknessOfSlab
+App.ActiveDocument.Structure.Normal.z = -1
+
+#creating roof slab
+pl = FreeCAD.Placement()
+pl.Rotation.Q = (0.0,0.0,0,1.0)
+pl.Base = FreeCAD.Vector(0,0,heightOfWall)
+rec = Draft.makeRectangle(lengthOfWall + offset2,widthOfWall + offset2,placement=pl,face=False,support=FreeCAD.ActiveDocument.getObject("Wall"))
+Draft.autogroup(rec)
+Draft.move([FreeCAD.ActiveDocument.Rectangle002],FreeCAD.Vector(-offset2/2,-offset2/2.0,0.0),copy=False)
+obj = Arch.makeStructure(FreeCAD.ActiveDocument.Rectangle002)
+Draft.autogroup(obj)
+App.ActiveDocument.Structure001.Height = thicknessOfSlab
+App.ActiveDocument.Structure001.Normal.z = 1
