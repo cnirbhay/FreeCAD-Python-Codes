@@ -44,3 +44,4 @@ obj = Arch.makeStructure(FreeCAD.ActiveDocument.Rectangle002)
 Draft.autogroup(obj)
 App.ActiveDocument.Structure001.Height = thicknessOfSlab
 App.ActiveDocument.Structure001.Normal.z = 1
+App.ActiveDocument.recompute()
