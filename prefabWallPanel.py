@@ -21,9 +21,9 @@ App.ActiveDocument.recompute()
 
 #adding first list of geometries to the sketch
 geoList0 = []
-geoList0.append(Part.LineSegment(App.Vector(-14.013569,-0.032741,0),App.Vector(0.130968,4.878557,0)))
-geoList0.append(Part.LineSegment(App.Vector(0.000000,4.878557,0),App.Vector(12.549567,-0.063675,0)))
-geoList0.append(Part.LineSegment(App.Vector(12.549567,0.000000,0),App.Vector(-13.933221,-0.016098,0)))
+geoList0.append(Part.LineSegment(App.Vector(-20,0,0),App.Vector(0,20,0)))
+geoList0.append(Part.LineSegment(App.Vector(0,20,0),App.Vector(20,0,0)))
+geoList0.append(Part.LineSegment(App.Vector(20,0,0),App.Vector(-20,0,0)))
 App.ActiveDocument.Sketch.addGeometry(geoList0,False)
 
 #adding first list of constraints to the sketch
@@ -40,10 +40,10 @@ App.ActiveDocument.Sketch.addConstraint(conList0)
 
 #adding second list of geometries to the sketch(for opening)
 geoList1 = []
-geoList1.append(Part.LineSegment(App.Vector(-436.624084,1710.354370,0),App.Vector(413.391266,1710.354370,0)))
-geoList1.append(Part.LineSegment(App.Vector(413.391266,1710.354370,0),App.Vector(413.391266,913.465332,0)))
-geoList1.append(Part.LineSegment(App.Vector(413.391266,913.465332,0),App.Vector(-436.624084,913.465332,0)))
-geoList1.append(Part.LineSegment(App.Vector(-436.624084,913.465332,0),App.Vector(-436.624084,1710.354370,0)))
+geoList1.append(Part.LineSegment(App.Vector(-5,5,0),App.Vector(5,5,0)))
+geoList1.append(Part.LineSegment(App.Vector(5,5,0),App.Vector(5,2,0)))
+geoList1.append(Part.LineSegment(App.Vector(5,2,0),App.Vector(-5,2,0)))
+geoList1.append(Part.LineSegment(App.Vector(-5,2,0),App.Vector(-5,5,0)))
 App.ActiveDocument.Sketch.addGeometry(geoList1,False)
 
 #adding second list of constraints to the sketch(for opening)
@@ -71,7 +71,7 @@ App.ActiveDocument.Pad.Type = 0
 App.ActiveDocument.Pad.UpToFace = None
 App.ActiveDocument.Pad.Reversed = 0
 App.ActiveDocument.Pad.Midplane = 0
-App.ActiveDocument.Pad.Offset = 0.000000
+App.ActiveDocument.Pad.Offset = 0
 App.ActiveDocument.recompute()
 
 #setting the axometric view
